@@ -7,7 +7,6 @@ const Splitter = @import("./splitter.zig");
 const Filters = @import("./filters.zig");
 
 pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
-    // Generate a 440Hz square wave
     const sample_rate: f64 = 44100.0;
     const channels = 1;
     const volume: f64 = 0.25;

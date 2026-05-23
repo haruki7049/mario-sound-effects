@@ -24,13 +24,21 @@
       perSystem =
         { pkgs, lib, ... }:
         let
+          buildInputs = lib.optionals pkgs.stdenv.isLinux [
+            pkgs.alsa-lib
+            pkgs.pulseaudio
+            pkgs.pipewire
+          ];
+
           mario-sound-effects = pkgs.stdenv.mkDerivation {
             name = "mario-sound-effects";
             src = lib.cleanSource ./.;
             doCheck = true;
 
+            inherit buildInputs;
             nativeBuildInputs = [
               pkgs.zig_0_15.hook
+              pkgs.pkg-config
             ];
 
             postPatch = ''
@@ -70,6 +78,7 @@
           };
 
           devShells.default = pkgs.mkShell {
+            inherit buildInputs;
             nativeBuildInputs = [
               # Compiler
               pkgs.zig_0_15
@@ -84,12 +93,6 @@
 
               # zon2nix
               pkgs.zon2nix
-            ];
-
-            buildInputs = lib.optionals pkgs.stdenv.isLinux [
-              pkgs.alsa-lib
-              pkgs.pulseaudio
-              pkgs.pipewire
             ];
 
             shellHook = ''

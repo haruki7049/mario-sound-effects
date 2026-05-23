@@ -26,7 +26,12 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         f64,
         allocator,
         44100 * 2,
-        &.{ _4_4_sawtooth, _4_4_sawtooth, _4_4_sawtooth, _4_4_sawtooth },
+        &.{
+            _4_4_sawtooth,
+            _4_4_sawtooth,
+            _4_4_sawtooth,
+            _4_4_sawtooth,
+        },
         sample_rate,
         channels,
     );

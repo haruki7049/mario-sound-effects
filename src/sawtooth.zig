@@ -18,11 +18,12 @@ const lightmix = @import("lightmix");
 pub fn gen(
     comptime T: type,
     allocator: std.mem.Allocator,
+    length: usize,
     frequency: T,
     sample_rate: T,
     volume: T,
 ) std.mem.Allocator.Error!lightmix.Wave(T) {
-    var samples: []T = try allocator.alloc(T, 44100);
+    var samples: []T = try allocator.alloc(T, length);
     for (0..samples.len) |i| {
         const t = @as(T, @floatFromInt(i)) / sample_rate;
         const phase = t * frequency;

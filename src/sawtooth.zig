@@ -20,12 +20,13 @@ pub fn gen(
     allocator: std.mem.Allocator,
     length: usize,
     frequency: T,
-    sample_rate: T,
+    sample_rate: u32,
+    channels: u16,
     volume: T,
 ) std.mem.Allocator.Error!lightmix.Wave(T) {
     var samples: []T = try allocator.alloc(T, length);
     for (0..samples.len) |i| {
-        const t = @as(T, @floatFromInt(i)) / sample_rate;
+        const t = @as(T, @floatFromInt(i)) / @as(T, @floatFromInt(sample_rate));
         const phase = t * frequency;
 
         // Square wave: +1 for first half of cycle, -1 for second half
@@ -36,7 +37,7 @@ pub fn gen(
     return lightmix.Wave(T){
         .allocator = allocator,
         .samples = samples,
-        .sample_rate = 44100,
-        .channels = 1,
+        .sample_rate = sample_rate,
+        .channels = channels,
     };
 }

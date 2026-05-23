@@ -7,7 +7,7 @@ const Splitter = @import("./splitter.zig");
 const Filters = @import("./filters.zig");
 
 pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
-    const sample_rate: f64 = 44100.0;
+    const sample_rate = 44100;
     const channels = 1;
     const volume: f64 = 0.25;
 
@@ -17,6 +17,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 6,
         Scale.gen(.{ .code = .c, .octave = 4 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_c4_sawtooth.filter(Filters.decay);
@@ -28,6 +29,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 4,
         Scale.gen(.{ .code = .e, .octave = 4 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_e4_sawtooth.filter(Filters.decay);
@@ -39,6 +41,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 2,
         Scale.gen(.{ .code = .g, .octave = 4 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_g4_sawtooth.filter(Filters.decay);
@@ -50,6 +53,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 6,
         Scale.gen(.{ .code = .gs, .octave = 4 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_gs4_sawtooth.filter(Filters.decay);
@@ -61,6 +65,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 4,
         Scale.gen(.{ .code = .c, .octave = 5 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_c5_sawtooth.filter(Filters.decay);
@@ -72,6 +77,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 2,
         Scale.gen(.{ .code = .ds, .octave = 5 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_ds5_sawtooth.filter(Filters.decay);
@@ -83,6 +89,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 9,
         Scale.gen(.{ .code = .as, .octave = 5 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_as5_sawtooth.filter(Filters.decay);
@@ -94,6 +101,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 6,
         Scale.gen(.{ .code = .d, .octave = 6 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_d6_sawtooth.filter(Filters.decay);
@@ -105,6 +113,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
         44100 / 3,
         Scale.gen(.{ .code = .f, .octave = 6 }),
         sample_rate,
+        channels,
         volume,
     );
     try _4_4_f6_sawtooth.filter(Filters.decay);

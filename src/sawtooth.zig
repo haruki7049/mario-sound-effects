@@ -21,7 +21,7 @@ pub fn gen(
     frequency: T,
     sample_rate: T,
     volume: T,
-) !lightmix.Wave(T) {
+) std.mem.Allocator.Error!lightmix.Wave(T) {
     var samples: []T = try allocator.alloc(T, 44100);
     for (0..samples.len) |i| {
         const t = @as(T, @floatFromInt(i)) / sample_rate;

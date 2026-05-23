@@ -2,12 +2,12 @@ const std = @import("std");
 const lightmix = @import("lightmix");
 
 const Sawtooth = @import("./sawtooth.zig");
+const Scale = @import("./scale.zig");
 const Splitter = @import("./splitter.zig");
 const Filters = @import("./filters.zig");
 
 pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
     // Generate a 440Hz square wave
-    const frequency: f64 = 440.0;
     const sample_rate: f64 = 44100.0;
     const channels = 1;
     const volume: f64 = 0.25;
@@ -15,7 +15,7 @@ pub fn gen(allocator: std.mem.Allocator) !lightmix.Wave(f64) {
     var _4_4_sawtooth = try Sawtooth.gen(
         f64,
         allocator,
-        frequency,
+        Scale.gen(.{ .code = .c, .octave = 4 }),
         sample_rate,
         volume,
     );
